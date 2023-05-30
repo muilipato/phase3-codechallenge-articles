@@ -1,6 +1,7 @@
 class Author
   attr_reader :name
 
+
   def initialize(name)
     @name = name
   end
@@ -10,6 +11,7 @@ class Author
   end
 
   def magazines
+
     articles.map { |article| article.magazine }.uniq
   end
 
