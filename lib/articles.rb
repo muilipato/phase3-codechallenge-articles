@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 require_relative "articles/version"
   class Article
     attr_reader :author, :magazine, :title
@@ -14,6 +13,7 @@ require_relative "articles/version"
     end
 
     def self.all
+
       @@all
     end
   end
