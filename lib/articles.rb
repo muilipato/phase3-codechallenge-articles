@@ -1,8 +1,21 @@
 # frozen_string_literal: true
 
 require_relative "articles/version"
+  class Article
+    attr_reader :author, :magazine, :title
 
-module Articles
-  class Error < StandardError; end
-  # Your code goes here...
-end
+    @@all = []
+
+    def initialize(author, magazine, title)
+      @author = author
+      @magazine = magazine
+      @title = title
+      @@all << self
+    end
+
+    def self.all
+      @@all
+    end
+  end
+
+
