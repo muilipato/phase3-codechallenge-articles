@@ -1,39 +1,118 @@
-# Articles
+# Object Relations Code Challenge - Articles
 
-TODO: Delete this and the text below, and describe your gem
+## Author
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/articles`. To experiment with that code, run `bin/console` for an interactive prompt.
+Patrick Maweu
 
-## Installation
+## Project Setup
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+The github link is public
 
-Install the gem and add to the application's Gemfile by executing:
+For this project to work run `ruby bin\test.rb` in this directory. This is where the test code is.
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+## Instructions
 
-If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+For this assignment, you will be working with a Magazine domain.
 
-## Usage
+We have three models: `Author`, `Article`, and `Magazine`.
 
-TODO: Write usage instructions here
+For our purposes, an `Author` has many `Article`s, a `Magazine` has many `Article`s, and `Article`s belong to both `Author` and `Magazine`.
 
-## Development
+`Author` - `Magazine` is a many to many relationship.
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+**Note**: You should draw your domain on paper or on a whiteboard _before you start coding_. Remember to identify a single source of truth for your data.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+## Topics
 
-## Contributing
+- Classes and Instances
+- Class and Instance Methods
+- Variable Scope
+- Object Relationships
+- Arrays and Array Methods
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/articles. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/articles/blob/main/CODE_OF_CONDUCT.md).
+## Instructions
 
-## License
+## Deliverables
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Write the following methods in the classes in the files provided. Feel free to build out any helper methods if needed.
 
-## Code of Conduct
+Deliverables use the notation `#` for instance methods, and `.` for class methods.
 
-Everyone interacting in the Articles project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/articles/blob/main/CODE_OF_CONDUCT.md).
+Some of the methods listed are provided to you in the starter code. You should check that they work correctly, and that you understand them.
+
+### Initializers, Readers, and Writers
+
+#### Author
+
+- `Author#initialize(name)`
+  - An author is initialized with a name, as a string.
+  - A name **cannot** be changed after it is initialized.
+- `Author#name`
+  - Returns the name of the author
+
+#### Magazine
+
+- `Magazine#initialize(name, category)`
+  - A magazine is initialized with a name as a string and a category as a string
+  - The name and category of the magazine **can be** changed after being initialized.
+- `Magazine#name`
+  - Returns the name of this magazine
+- `Magazine#category`
+  - Returns the category of this magazine
+- `Magazine.all`
+  - Returns an array of all Magazine instances
+
+#### Article
+
+- `Article#initialize(author, magazine, title)`
+  - An article is initialized with an author as an Author object, a magazine as a Magazine object, and title as a string.
+  - An article **cannot** change its author, magazine, or title after it is has been initialized.
+- `Article#title`
+  - Returns the title for that given article
+- `Article.all`
+  - Returns an array of all Article instances
+
+### Object Relationship Methods
+
+#### Article
+
+- `Article#author`
+  - Returns the author for that given article
+- `Article#magazine`
+  - Returns the magazine for that given article
+
+#### Author
+
+- `Author#articles`
+  - Returns an array of Article instances the author has written
+- `Author#magazines`
+  - Returns a **unique** array of Magazine instances for which the author has contributed to
+
+#### Magazine
+
+- `Magazine#contributors`
+  - Returns an array of Author instances who have written for this magazine
+
+### Associations and Aggregate Methods
+
+#### Author
+
+- `Author#add_article(magazine, title)`
+  - Given a magazine (as Magazine instance) and a title (as a string), creates a new Article instance and associates it with that author and that magazine.
+- `Author#topic_areas`
+  - Returns a **unique** array of strings with the categories of the magazines the author has contributed to
+
+#### Magazine
+
+- `Magazine.find_by_name(name)`
+  - Given a string of magazine's name, this method returns the first magazine object that matches
+- `Magazine#article_titles`
+  - Returns an array strings of the titles of all articles written for that magazine
+- `Magazine#contributing_authors`
+  - Returns an array of authors who have written more than 2 articles for the magazine
+
+## Rubric
+
+You can find the rubric for this assessment [here](https://github.com/learn-co-curriculum/se-rubrics/blob/master/module-1.md).
+# phase3CodeChallengeArticles
